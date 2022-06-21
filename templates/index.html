@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% block content %}
-<div class="container py-1">
+<div class="container-fluid">
   <h1 class="display-1">Viva Las Vegas</h1>
     <div class="row">
       <div class="col py-1">
@@ -9,14 +9,16 @@
         </p>
       </div>
     </div>
-<div class="container py-1">
+<div class="container-fluid">
   <h2>Discover</h2>
   <div class="row">
-      <div class="col-6 py-1">
+      <div class="col-md-8">Responsive classes
+
+        Bootstrap’s grid includes six tiers of predefined classes for building complex responsive layouts. Customize the size of your columns on extra small, small, medium, large, or extra large devices however you see fit.
 <!-- TO-DO:
 Needs description of site, products, etc. -->
       </div>
-      <div class="col-6 py-1">
+      <div class="col-6 col-md-4">
         <div class="card" style="width: 18rem;">
           <img src="/static/lasvegascardimage.jpg" class="card-img-top" alt="...">
           <div class="card-body">
@@ -24,16 +26,15 @@ Needs description of site, products, etc. -->
             <p class="card-text">Looking for the best family-friendly fun Las Vegas has to offer? Look no further! Our Day Passes are fun for solo vactioners, couples, and families too!</p>
 <!-- TO-DO:
 Need to link button action to "purchase/order" page.  -->
-            <a href="#" class="btn btn-primary">Purchase Day Passes!</a>
+            <a href="/order" class="btn btn-primary">Purchase Day Passes!</a>
           </div>
         </div>
       </div>
   </div>
 </div>
-  <div class="container py-1">
+  <div class="container-fluid">
     <h2>Explore</h2>
-      <div class="row justify-content-center">
-        <div class="col-10 py-1">{{ lvmap|safe }}</div>
+        <div class="col-xl-auto py-1">{{ lvmap|safe }}</div>
       </div>
   </div>
 </div>
