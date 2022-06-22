@@ -6,8 +6,6 @@ import flask
 from flask import Flask, json, render_template, request, redirect, jsonify
 import requests
 
-
-
 app = Flask(__name__)
 
 m = folium.Map(location=[36.085645468598855, -115.08441257156686], zoom_start=10, min_zoom=10, tiles="Stamen Terrain")
@@ -34,6 +32,24 @@ for museums in response['items']:
 @app.route('/')
 def index(): 
     return render_template('index.html', lvmap=lvmap)
+
+@app.route('/get_price')
+def get_hotdog_price():
+    a = request.args.get('a')
+    url = "https://gf641ea24ecc468-dbmcdeebyface.adb.us-ashburn-1.oraclecloudapps.com/ords/admin/hotdogs/getprice/"+a
+    print(url)
+    response = requests.get(url)
+
+    for ids in response.json()['items']:
+        
+        idList = dict()
+        try:
+            product_price = ids['product_price']       
+
+        except:
+            pass
+
+    return jsonify(product_price)
 
 @app.route('/order')
 def order():
