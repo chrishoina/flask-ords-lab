@@ -25,11 +25,11 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col">
-                <select class="form-select" aria-label="Default select example">
+                <select class="form-select" aria-label="Default select example" name="product_id" id="product_id" method="GET" action="/" onchange="getPrice()">
                 <option value="" selected>How many are going?</option> 
-                <option value="1">Individual</option>
-                <option value="2">Parter/Couple</option>
-                <option value="3">Family</option>
+                {% for i in list_of_tix_return %}
+                <option value="{{ i[""product_id"] }}">{{ i["product_name"] }}</option>
+                {% endfor %}
                 </select>
             </div>
         </div>
