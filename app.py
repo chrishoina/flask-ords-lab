@@ -62,3 +62,16 @@ def order():
     list_of_tix = getTix()
     return render_template('order.html',list_of_tix_return=list_of_tix)
 
+@app.route('/result', methods = ['POST', 'GET'])    
+def result():
+   url = "https://gf641ea24ecc468-dbmcdeebyface.adb.us-ashburn-1.oraclecloudapps.com/ords/admin/hotdogs/createorder/"
+   if request.method == 'POST':
+        product_id = request.form.get('product_id')
+        quantity = request.form.get('quantity')
+        total = request.form.get('total')
+
+        json_data = { "PRODUCT_ID": product_id, "QUANTITY": quantity, "TOTAL_PRICE": total }
+    
+        headers = {'Content-type':'application/json', 'Accept':'application/json'}
+        response = requests.post(url, json=json_data, headers=headers)
+        return redirect('myorders')

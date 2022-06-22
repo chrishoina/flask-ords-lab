@@ -1,24 +1,52 @@
 {% extends 'base.html' %}
 
-{% block content %} 
+<script>
+    function totalPrice() {
+        var quantity = parseFloat(document.getElementById('quantity').value);
+        var price = parseFloat(document.getElementById('price').innerHTML);
+        document.getElementById('total').value = (quantity * price).toFixed(2);
+    }
 
-<!-- This is the single, indiv, or family -->
-<select class="form-select" aria-label="Default select example">
-    <!-- <option selected> Need to come up with menu one liner</option> -->
- <!-- need to change these values -->
-    <!-- <option value="1">One</option>
-    <option value="2">Two</option>
-    <option value="3">Three</option> -->
-  </select>
-  <p>
-    <!-- This one is for day-, pick-3, or unlimited day pass selection -->
-    <select class="form-select" aria-label="Default select example">
-        <option selected>Open this select menu</option>
-        <option value="1">One</option>
-        <option value="2">Two</option>
-        <option value="3">Three</option>
-      </select>
-  </p>
+    function getPrice(){
+
+        var product_id = parseFloat(document.getElementById('product_id').value);
+
+        fetch('/get_price?a='+product_id)
+        .then(response => response.json())  
+            .then(json => {
+                document.getElementById("price").innerHTML = JSON.stringify(json)
+            })
+    }
+</script>
+
+{% block content %}
+
+<form action="/result" method="POST">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col">
+                <select class="form-select" aria-label="Default select example">
+                <option value="" selected>How many are going?</option> 
+                <option value="1">Individual</option>
+                <option value="2">Parter/Couple</option>
+                <option value="3">Family</option>
+                </select>
+            </div>
+        </div>
+        <!-- <div class="row">
+            <div class="col">
+                <select class="form-select" aria-label="Default select example">
+                <option value="" selected>How big is your appetite?</option>
+                <option value="1">Just enough time for ONE</option>
+                <option value="2">Taking it in with THREE spots</option>
+                <option value="3">In for the long haul UNLIMITED</option>
+                </select>
+                </p>
+            </div>
+        </div> -->
+    </div>
+</form>
+
   <!-- a field for individual price  -->
   <!--  field for subtotal -->
   <!-- Need submit button -->
