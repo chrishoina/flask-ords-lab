@@ -282,7 +282,7 @@ INSERT INTO products (
     product_price
 ) VALUES (
     'Group Day Pass',
-    'Looking for something to do? Try the Group Day Pass.'
+    'Looking for something to do? Try the Group Day Pass.',
     'Valid',
     174.99 
 );
@@ -294,7 +294,7 @@ INSERT INTO products (
     product_price
 ) VALUES (
     'Group Pick-3 Day Pass',
-    'Make sure everybody has a great time with our Pick-3 Day Pass.'
+    'Make sure everybody has a great time with our Pick-3 Day Pass.',
     'Valid',
     304.99 
 );
@@ -306,7 +306,7 @@ INSERT INTO products (
     product_price
 ) VALUES (
     'Group Unlimited Day Pass',
-    'Our 'set it and forget it' day pass. This one is our top seller!',
+    'Our ''set it and forget it'' day pass. This one is our top seller!',
     'Valid',
     529.99 
 );

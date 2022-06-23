@@ -12,18 +12,18 @@ m = folium.Map(location=[36.085645468598855, -115.08441257156686], zoom_start=10
 
 tooltip = "Click me!"
 
-response = requests.get("https://gf641ea24ecc468-dbmcdeebyface.adb.us-ashburn-1.oraclecloudapps.com/ords/admin/muesums/").json() 
+response = requests.get("https://gf641ea24ecc468-dbmcdeebyface.adb.us-ashburn-1.oraclecloudapps.com/ords/admin/museums/").json() 
 
 for museums in response['items']: 
-    msm_id = museums['msm_id']
-    msm_name = museums['msm_name']
-    msm_loc = museums['msm_location']
-    msm_lat = museums['msm_lat']
-    msm_long = museums['msm_long']
+    museum_id = museums['museum_id']
+    museum_name = museums['museum_name']
+    museum_loc = museums['museum_location']
+    museum_lat = museums['museum_lat']
+    museum_long = museums['museum_long']
 
     folium.Marker(
-        location=[msm_lat, msm_long],
-        popup=folium.Popup("<i>{}</i>".format(msm_name), max_width=450),
+        location=[museum_lat, museum_long],
+        popup=folium.Popup("<i>{}</i>".format(museum_name), max_width=450),
         tooltip=tooltip
         ).add_to(m)
  
@@ -34,9 +34,9 @@ def index():
     return render_template('index.html', lvmap=lvmap)
 
 @app.route('/get_price')
-def get_hotdog_price():
+def get_product_price():
     a = request.args.get('a')
-    url = "https://gf641ea24ecc468-dbmcdeebyface.adb.us-ashburn-1.oraclecloudapps.com/ords/admin/hotdogs/getprice/"+a
+    url = "https://gf641ea24ecc468-dbmcdeebyface.adb.us-ashburn-1.oraclecloudapps.com/ords/admin/products/getprice/"+a
     print(url)
     response = requests.get(url)
 
@@ -53,30 +53,30 @@ def get_hotdog_price():
 
 @app.route('/order')
 def order():
-    def getTix():
-         response = requests.get("https://gf641ea24ecc468-dbmcdeebyface.adb.us-ashburn-1.oraclecloudapps.com/ords/admin/products/")
-         list_of_tix = []
+    def getProducts():
+        response = requests.get("https://gf641ea24ecc468-dbmcdeebyface.adb.us-ashburn-1.oraclecloudapps.com/ords/admin/products/")
+        list_of_products = []
 
-         for tix in response.json()['items']:
+        for products in response.json()['items']:
 
-            tixList = dict()
+            productList = dict()
             try:
 
-                product_id = tix['product_id']
-                product_name = tix['product_name']
+                product_id = products['product_id']
+                product_name = products['product_name']
 
-                tixList['product_id'] = product_id
-                tixList['product_name'] = product_name
-                
-                list_of_tix.append(tixList)
-                
+                productList['product_id'] = product_id
+                productList['product_name'] = product_name
+
+                list_of_products.append(productList)
+
             except:
                 pass
 
-            return list_of_tix
-
-    list_of_tix = getTix()
-    return render_template('order.html',list_of_tix_return=list_of_tix)
+        return list_of_products 
+ 
+    list_of_products = getProducts()
+    return render_template('order.html', list_of_products_return=list_of_products)
 
 @app.route('/result', methods = ['POST', 'GET'])    
 def result():
