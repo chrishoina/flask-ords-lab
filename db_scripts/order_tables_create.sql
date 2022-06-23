@@ -39,11 +39,12 @@ create table museums (
 museum_id NUMBER GENERATED ALWAYS AS IDENTITY,
 museum_name varchar2(500),
 museum_location varchar2(500),
-museum_latlong varchar2(500)
+museum_lat NUMBER(10),
+museum_long NUMBER(10)
 );
 
 CREATE UNIQUE INDEX museum_pk on museum (museum_id) ;
 
-ALTER TABLE museums, ADD ( CONSTRAINT store_pk PRIMARY KEY (museum_id));
+ALTER TABLE museums ADD ( CONSTRAINT museum_pk PRIMARY KEY (museum_id));
 
 commit;
