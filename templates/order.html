@@ -1,53 +1,20 @@
 {% extends 'base.html' %}
-
-<script>
-    function totalPrice() {
-        var quantity = parseFloat(document.getElementById('quantity').value);
-        var price = parseFloat(document.getElementById('price').innerHTML);
-        document.getElementById('total').value = (quantity * price).toFixed(2);
-    }
-
-    function getPrice(){
-
-        var product_id = parseFloat(document.getElementById('product_id').value);
-
-        fetch('/get_price?a='+product_id)
-        .then(response => response.json())  
-            .then(json => {
-                document.getElementById("price").innerHTML = JSON.stringify(json)
-            })
-    }
-</script>
-
 {% block content %}
-
-<form action="/result" method="POST">
     <div class="container-fluid">
         <div class="row">
             <div class="col">
-                <select class="form-select" aria-label="Default select example" name="product_id" id="product_id" method="GET" action="/" onchange="getPrice()">
+                <form action="/result" method="POST">
+                <select class="form-select" name="product_id" id="product_id" method="GET" action="/" onchange="getDescription(); getPrice()">
                     <option value="" selected>How many are going?</option> 
                     {% for i in list_of_products_return %}
-                        <option value="{{ i['product_id'] }}">{{ i['product_name'] }}</option>
+                    <option value="{{ i['product_id'] }}">{{ i['product_name'] }}</option>
                     {% endfor %}
-                </select>
+                 </select>
+                    <p class="header1">Description: <span id="description"></span></p> 
+                    <p class="header1">Total Price: $<span id="price"></span></p>
+                    <p><input type = "submit" value = "Place Order"></p>
+                </form>
             </div>
         </div>
-        <!-- <div class="row">
-            <div class="col">
-                <select class="form-select" aria-label="Default select example">
-                <option value="" selected>How big is your appetite?</option>
-                <option value="1">Just enough time for ONE</option>
-                <option value="2">Taking it in with THREE spots</option>
-                <option value="3">In for the long haul UNLIMITED</option>
-                </select>
-                </p>
-            </div>
-        </div> -->
     </div>
-</form>
-
-  <!-- a field for individual price  -->
-  <!--  field for subtotal -->
-  <!-- Need submit button -->
 {% endblock %}

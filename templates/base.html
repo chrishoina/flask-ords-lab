@@ -5,12 +5,42 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Viva Las Vegas - an ORDS joint</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
-   </head>
+      <script>
+        // function totalPrice() {
+        //     var quantity = parseFloat(document.getElementById('quantity').value);
+        //     var price = parseFloat(document.getElementById('price').innerHTML);
+        //     document.getElementById('total').value = (quantity * price).toFixed(2);
+        // }
+    
+        function getPrice(){
+    
+            var product_id = parseFloat(document.getElementById('product_id').value);
+    // This is one of the endpoints that needs to be renamed/retweaked. Needs to be RESTful. 
+            fetch('/get_price?a='+product_id)
+            .then(response => response.json())  
+                .then(json => {
+                    document.getElementById("price").innerHTML = JSON.stringify(json)
+                })
+        }
+    
+        function getDescription() {
+          
+          var product_id = parseFloat(document.getElementById('product_id').value);
+          
+          fetch('/get_description?a='+product_id)
+          .then(response => response.json())
+            .then(json => {
+              document.getElementById("description").innerHTML = JSON.stringify(json)
+            })
+        }
+    </script>
+     </head>
   <body>
 <!-- The sticky-top utility allows the navbar to scroll with the page. This gives a nice modern/responsive feel. The py-1 refers to top and bottom padding. This puts a little bit of negative space on the top and bottom of the navbar. So when srolling, you can see the page underneath the navbar. This gives a cool, modern effect. --> 
     <header class="site-header sticky-top py-1">{% include 'navbar.html' %}</header>
     {% block content %}
     {% endblock %}
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous">
+    </script>
   </body>
  </html>

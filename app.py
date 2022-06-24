@@ -12,22 +12,28 @@ m = folium.Map(location=[36.085645468598855, -115.08441257156686], zoom_start=10
 
 tooltip = "Click me!"
 
-response = requests.get("https://gf641ea24ecc468-dbmcdeebyface.adb.us-ashburn-1.oraclecloudapps.com/ords/admin/museums/").json() 
+# response = requests.get("https://gf641ea24ecc468-dbmcdeebyface.adb.us-ashburn-1.oraclecloudapps.com/ords/admin/museums/") 
 
-for museums in response['items']: 
-    museum_id = museums['museum_id']
-    museum_name = museums['museum_name']
-    museum_loc = museums['museum_location']
-    museum_lat = museums['museum_lat']
-    museum_long = museums['museum_long']
+# for i in response.iter_content():
+#     print(i)
+# print(response.iter_content)
 
-    folium.Marker(
-        location=[museum_lat, museum_long],
-        popup=folium.Popup("<i>{}</i>".format(museum_name), max_width=450),
-        tooltip=tooltip
-        ).add_to(m)
+# for museums in response['items']: 
+#     museum_id = museums['museum_id']
+#     museum_name = museums['museum_name']
+#     museum_loc = museums['museum_location']
+#     museum_lat = museums['museum_lat']
+#     museum_long = museums['museum_long']
+    
+#     list_of_museums.append(museumList)
+
+#     folium.Marker(
+#         location=[museum_lat, museum_long],
+#         popup=folium.Popup("<i>{}</i>".format(museum_name), max_width=450),
+#         tooltip=tooltip
+#         ).add_to(m)
  
-    lvmap = m._repr_html_()
+#     lvmap = m._repr_html_()
 
 @app.route('/')
 def index(): 
@@ -41,7 +47,7 @@ def get_product_price():
     response = requests.get(url)
 
     for ids in response.json()['items']:
-        
+    
         idList = dict()
         try:
             product_price = ids['product_price']       
@@ -50,6 +56,24 @@ def get_product_price():
             pass
 
     return jsonify(product_price)
+
+@app.route('/get_description')
+def get_product_description():
+    a = request.args.get('a')
+    url = "https://gf641ea24ecc468-dbmcdeebyface.adb.us-ashburn-1.oraclecloudapps.com/ords/admin/products/getdescription/"+a
+    print(url)
+    response = requests.get(url)
+
+    for ids in response.json()['items']:
+        
+        idList = dict()
+        try:
+            product_description = ids['product_description']       
+
+        except:
+            pass
+
+    return jsonify(product_description)
 
 @app.route('/order')
 def order():
@@ -64,9 +88,12 @@ def order():
 
                 product_id = products['product_id']
                 product_name = products['product_name']
+                product_description = products['product_description']
+             
 
                 productList['product_id'] = product_id
                 productList['product_name'] = product_name
+                productList['product_description'] = product_description 
 
                 list_of_products.append(productList)
 
@@ -80,14 +107,17 @@ def order():
 
 @app.route('/result', methods = ['POST', 'GET'])    
 def result():
-   url = "https://gf641ea24ecc468-dbmcdeebyface.adb.us-ashburn-1.oraclecloudapps.com/ords/admin/hotdogs/createorder/"
+   url = "https://gf641ea24ecc468-dbmcdeebyface.adb.us-ashburn-1.oraclecloudapps.com/ords/admin/products/createorder/"
    if request.method == 'POST':
         product_id = request.form.get('product_id')
-        quantity = request.form.get('quantity')
-        total = request.form.get('total')
+        total = request.form.get('price')
 
-        json_data = { "PRODUCT_ID": product_id, "QUANTITY": quantity, "TOTAL_PRICE": total }
-    
+        json_data = { "PRODUCT_ID": product_id, "TOTAL_PRICE": total }
+
         headers = {'Content-type':'application/json', 'Accept':'application/json'}
         response = requests.post(url, json=json_data, headers=headers)
-        return redirect('myorders')
+        return redirect('orderhistory')
+
+@app.route('/orderhistory')
+def myOrders():
+    return render_template('orderhistory.html')
