@@ -1,10 +1,12 @@
 # to pip install in venv ONLY, use: "python -m pip install [library name]"
 
+from ast import Try
 import folium 
 from folium import plugins, JavascriptLink, Tooltip
 import flask
 from flask import Flask, json, render_template, request, redirect, jsonify
 import requests
+import json 
 
 app = Flask(__name__)
 
@@ -12,28 +14,36 @@ m = folium.Map(location=[36.085645468598855, -115.08441257156686], zoom_start=10
 
 tooltip = "Click me!"
 
-# response = requests.get("https://gf641ea24ecc468-dbmcdeebyface.adb.us-ashburn-1.oraclecloudapps.com/ords/admin/museums/") 
+response = requests.get("https://gf641ea24ecc468-dbmcdeebyface.adb.us-ashburn-1.oraclecloudapps.com/ords/admin/museums/").json()
 
 # for i in response.iter_content():
 #     print(i)
 # print(response.iter_content)
 
-# for museums in response['items']: 
-#     museum_id = museums['museum_id']
-#     museum_name = museums['museum_name']
-#     museum_loc = museums['museum_location']
-#     museum_lat = museums['museum_lat']
-#     museum_long = museums['museum_long']
-    
-#     list_of_museums.append(museumList)
+for museums in response['items']:
+    # print(response['items'])
+    try: 
+        museum_id = museums['museum_id']
+        museum_loc = museums['museum_location']
+        museum_lat = museums['museum_lat']
+        # print(museum_lat)
+        museum_long = museums['museum_long']
+        # print(museum_long)
+        museum_name = museums['museum_name']
+        folium.Marker(tooltip=tooltip,location=[museum_lat, museum_long], popup=folium.Popup("<i>{}</i>".format(museum_name), max_width=450),).add_to(m)
+    except: 
+        continue
+    # list_of_museums.append(museumList)
 
-#     folium.Marker(
-#         location=[museum_lat, museum_long],
-#         popup=folium.Popup("<i>{}</i>".format(museum_name), max_width=450),
-#         tooltip=tooltip
-#         ).add_to(m)
+    # folium.Marker(
+    #     location=[museum_lat, museum_long],
+    #     popup=folium.Popup("<i>{}</i>".format(museum_name), max_width=450),
+    #     tooltip=tooltip
+    #     ).add_to(m)
  
-#     lvmap = m._repr_html_()
+# m.save('foliummap.html') 
+# m._repr_html_()
+lvmap = m._repr_html_()
 
 @app.route('/')
 def index(): 
@@ -42,26 +52,34 @@ def index():
 @app.route('/get_price')
 def get_product_price():
     a = request.args.get('a')
-    url = "https://gf641ea24ecc468-dbmcdeebyface.adb.us-ashburn-1.oraclecloudapps.com/ords/admin/products/getprice/"+a
-    print(url)
+    url = " https://gf641ea24ecc468-dbmcdeebyface.adb.us-ashburn-1.oraclecloudapps.com/ords/admin/products/price/"+a
+    # print(url)
     response = requests.get(url)
 
     for ids in response.json()['items']:
     
         idList = dict()
+        # print("ID List")
+        # print(idList)
         try:
             product_price = ids['product_price']       
 
         except:
             pass
+    print(product_price)
+    print(type(product_price))
+    jprod = jsonify(product_price)
+    
+    print(type(jprod))
+    return jprod
 
-    return jsonify(product_price)
+
 
 @app.route('/get_description')
 def get_product_description():
     a = request.args.get('a')
     url = "https://gf641ea24ecc468-dbmcdeebyface.adb.us-ashburn-1.oraclecloudapps.com/ords/admin/products/getdescription/"+a
-    print(url)
+    # print(url)
     response = requests.get(url)
 
     for ids in response.json()['items']:
@@ -107,15 +125,22 @@ def order():
 
 @app.route('/result', methods = ['POST', 'GET'])    
 def result():
-   url = "https://gf641ea24ecc468-dbmcdeebyface.adb.us-ashburn-1.oraclecloudapps.com/ords/admin/products/createorder/"
+   url = "https://gf641ea24ecc468-dbmcdeebyface.adb.us-ashburn-1.oraclecloudapps.com/ords/admin/products/orders/"
    if request.method == 'POST':
         product_id = request.form.get('product_id')
-        total = request.form.get('price')
-
-        json_data = { "PRODUCT_ID": product_id, "TOTAL_PRICE": total }
+        # print(type(product_id))
+        product_price = request.form.get('product_price')
+        
+        product_description = request.form.get('product_description')
+        print(product_description)
+        # print(type(product_price))
+        # print(product_price) 
+        json_data = { "PRODUCT_ID": product_id, "PRODUCT_PRICE": product_price}
+        # print(json_data)
 
         headers = {'Content-type':'application/json', 'Accept':'application/json'}
         response = requests.post(url, json=json_data, headers=headers)
+        print(json_data)
         return redirect('orderhistory')
 
 @app.route('/orderhistory')

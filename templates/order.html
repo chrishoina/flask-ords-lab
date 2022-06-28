@@ -4,15 +4,27 @@
         <div class="row">
             <div class="col">
                 <form action="/result" method="POST">
-                <select class="form-select" name="product_id" id="product_id" method="GET" action="/" onchange="getDescription(); getPrice()">
-                    <option value="" selected>How many are going?</option> 
+                    <select class="form-select" name="product_id" id="product_id" method="GET" action="/" onchange="getDescription(); getPrice()">
+                        <option value="" selected>How many are going?</option> 
                     {% for i in list_of_products_return %}
-                    <option value="{{ i['product_id'] }}">{{ i['product_name'] }}</option>
+                        <option value="{{ i['product_id'] }}">{{ i['product_name'] }}</option>
                     {% endfor %}
-                 </select>
-                    <p class="header1">Description: <span id="description"></span></p> 
-                    <p class="header1">Total Price: $<span id="price"></span></p>
-                    <p><input type = "submit" value = "Place Order"></p>
+                    </select>
+        <div class="row">
+            <div class="col">
+                <p class="header1">Description: <span id="product_description"></span></p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <p class="header1">Total Price: $<span id="product_price"></span></p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <input type = "submit" value = "Place Order">
+            </div>
+        </div>
                 </form>
             </div>
         </div>
