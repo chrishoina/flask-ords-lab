@@ -16,21 +16,17 @@
     
             var product_id = parseFloat(document.getElementById('product_id').value);
     // This is one of the endpoints that needs to be renamed/retweaked. Needs to be RESTful. 
-            fetch('/get_price?a='+product_id)
-            .then(response => response.json())  
-                .then(json => {
-                    document.getElementById("price").innerHTML = JSON.stringify(json)
-                })
+            fetch('/get_price?a='+product_id).then(response => response.json()).then(json => {document.getElementById("product_price").innerHTML = JSON.stringify(json)})
         }
-    
+
         function getDescription() {
-          
+        
           var product_id = parseFloat(document.getElementById('product_id').value);
           
           fetch('/get_description?a='+product_id)
           .then(response => response.json())
             .then(json => {
-              document.getElementById("description").innerHTML = JSON.stringify(json)
+              document.getElementById("product_description").innerHTML = JSON.stringify(json)
             })
         }
     </script>

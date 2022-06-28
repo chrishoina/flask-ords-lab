@@ -27,8 +27,8 @@ BEGIN
       p_mimes_allowed  => NULL,
       p_comments       => NULL,
       p_source         => 
-'insert into ORDERS (PRODUCT_ID, QUANTITY, TOTAL_PRICE)
-values (:PRODUCT_ID, :QUANTITY, :TOTAL_PRICE)');
+'insert into ORDERS (PRODUCT_ID, PRODUCT_PRICE)
+values (:PRODUCT_ID, :QUANTITY, :PRODUCT_PRICE)');
 
   ORDS.DEFINE_TEMPLATE(
       p_module_name    => 'com.oracle.flaskords.lab',
@@ -46,9 +46,9 @@ values (:PRODUCT_ID, :QUANTITY, :TOTAL_PRICE)');
       p_mimes_allowed  => NULL,
       p_comments       => NULL,
       p_source         => 
-'SELECT o.ORDER_ID, p.PRODUCT_NAME, p.PRODUCT_DESCRIPTION, o.QUANTITY, TO_CHAR(o.TOTAL_PRICE,''L99G999D99MI'',
+'SELECT o.ORDER_ID, p.PRODUCT_NAME, p.PRODUCT_DESCRIPTION, o.QUANTITY, TO_CHAR(o.PRODUCT_PRICE,''L99G999D99MI'',
                ''NLS_NUMERIC_CHARACTERS = ''''.,''''
-               NLS_CURRENCY = $'') TOTAL_PRICE
+               NLS_CURRENCY = $'') PRODUCT_PRICE
 from orders o, products p
 where o.product_id = p.product_id
 order by o.order_id');
