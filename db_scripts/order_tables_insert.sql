@@ -209,10 +209,10 @@ INSERT INTO products (
     product_status,
     product_price
 ) VALUES (
-    'Solo Day Pass',
-    'No friends? No partner? No sense of belonging? No problem! Our Day Pass is just what you need.',
+    'Single Access Day Pass',
+    'Only have enough time for just one stop? No worries, try our Single Access Pass for a quick diversion!',
     'Valid',
-    49.99 
+    24.99 
 );
 
 INSERT INTO products (
@@ -221,10 +221,10 @@ INSERT INTO products (
     product_status,
     product_price
 ) VALUES (
-    'Solo Pick-3 Day Pass',
-    'Keep the fun alive with the Pick-3 Day Pass - three times the fun at a fraction of the cost!',
+    'Pick-3 Day Pass',
+    'Whoa, look at you Gulliver! Keep the fun going with our most popular option, the Pick-3 Access Pass!',
     'Valid',
-    84.99 
+    54.99 
 );
 
 INSERT INTO products (
@@ -233,82 +233,10 @@ INSERT INTO products (
     product_status,
     product_price
 ) VALUES (
-    'Solo Unlimited Day Pass',
-    'Wow...almost nobody selects this. Maybe should be paying you to buy this one?',
+    'Unlimited Access Day Pass',
+    'Better stay hydrated for this one! The world is your oyster. Seize the day with our most inclusive Day Pass.',
     'Valid',
-    149.99 
-);
-
-INSERT INTO products (
-    product_name,
-    product_description,
-    product_status,
-    product_price
-) VALUES (
-    'Duo Day Pass',
-    'A great option for new couples and partners in crime. Also known as our ''friend zone'' option.',
-    'Valid',
-    89.99
-);
-
-INSERT INTO products (
-    product_name,
-    product_description,
-    product_status,
-    product_price
-) VALUES (
-    'Duo Pick-3 Day Pass',
-    'The perfect choice for when you both have nothing left to say. Let the attractions do the talking for you!',
-    'Valid',
-    154.99 
-);
-
-INSERT INTO products (
-    product_name,
-    product_description,
-    product_status,
-    product_price
-) VALUES (
-    'Duo Unlimited Day Pass',
-    'Our ''throwing in the towel'' option.',
-    'Valid',
-    269.99 
-);
-
-INSERT INTO products (
-    product_name,
-    product_description,
-    product_status,
-    product_price
-) VALUES (
-    'Group Day Pass',
-    'Looking for something to do? Try the Group Day Pass.',
-    'Valid',
-    174.99 
-);
-
-INSERT INTO products (
-    product_name,
-    product_description,
-    product_status,
-    product_price
-) VALUES (
-    'Group Pick-3 Day Pass',
-    'Make sure everybody has a great time with our Pick-3 Day Pass.',
-    'Valid',
-    304.99 
-);
-
-INSERT INTO products (
-    product_name,
-    product_description,
-    product_status,
-    product_price
-) VALUES (
-    'Group Unlimited Day Pass',
-    'Our ''set it and forget it'' day pass. This one is our top seller!',
-    'Valid',
-    529.99 
+    94.99 
 );
 
 commit;

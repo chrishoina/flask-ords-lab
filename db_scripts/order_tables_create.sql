@@ -9,6 +9,7 @@ drop table museums;
 CREATE TABLE orders
 (order_id NUMBER GENERATED ALWAYS AS IDENTITY,
 product_id NUMBER(6) NOT NULL,
+quantity NUMBER(8),
 total_price NUMBER(8,2)
 );
 
@@ -37,8 +38,7 @@ ALTER TABLE products ADD ( CONSTRAINT product_pk PRIMARY KEY (product_id));
 create table museums (
 museum_id NUMBER GENERATED ALWAYS AS IDENTITY,
 museum_name varchar2(500),
-museum_location varchar2(500),
--- Originally had this as NUMBER(), but when loading into Autonomous Database, it defaulted to (10,0). As a result, it rounded many of the lat/long to 36, -115. So it wasn't displaying correctly. This caused a downstream error in the python code. Needed to change to NUMBER(8,6) and (9,6), respectively. 
+museum_address varchar2(500),
 museum_lat NUMBER(8,6),
 museum_long NUMBER(9,6)
 );
