@@ -3,7 +3,7 @@
 from ast import Try
 from traceback import print_tb
 import folium 
-from folium import plugins, JavascriptLink, Tooltip
+from folium import plugins, JavascriptLink, Tooltip, Icon
 import flask
 from flask import Flask, json, render_template, request, redirect, jsonify
 import requests
@@ -11,31 +11,30 @@ import json
 
 app = Flask(__name__)
 
-m = folium.Map(location=[36.085645468598855, -115.08441257156686], zoom_start=10, min_zoom=10, tiles="Stamen Terrain")
+m = folium.Map(location=[36.085645468598855, -115.08441257156686], zoom_start=10, min_zoom=10, tiles="Stamen Toner")
 
 tooltip = "Click me!"
 
-response = requests.get("https://gf641ea24ecc468-dbmcdeebyface.adb.us-ashburn-1.oraclecloudapps.com/ords/admin/museums/").json()
+response = requests.get("https://gf641ea24ecc468-dbmcdeebyface.adb.us-ashburn-1.oraclecloudapps.com/ords/admin/flaskordslab/locations/map/data").json()
 
 for museums in response['items']:
     # print(response['items'])
     try: 
         museum_id = museums['museum_id']
-        museum_loc = museums['museum_location']
         museum_lat = museums['museum_lat']     
         museum_long = museums['museum_long']
         museum_name = museums['museum_name']
         
-        folium.Marker(tooltip=tooltip,location=[museum_lat, museum_long], popup=folium.Popup("<i>{}</i>".format(museum_name), max_width=450),).add_to(m)
+        # folium.Marker(tooltip=tooltip,location=[museum_lat, museum_long], popup=folium.Popup("<i>{}</i>".format(museum_name), max_width=450),).add_to(m)
     except: 
         continue
     # list_of_museums.append(museumList)
 
-    # folium.Marker(
-    #     location=[museum_lat, museum_long],
-    #     popup=folium.Popup("<i>{}</i>".format(museum_name), max_width=450),
-    #     tooltip=tooltip
-    #     ).add_to(m)
+    folium.Marker(
+        location=[museum_lat, museum_long],
+        popup=folium.Popup("<i>{}</i>".format(museum_name), max_width=450), icon=folium.Icon(color="lightred", icon="info-sign"),
+        tooltip=tooltip
+        ).add_to(m)
  
 # m.save('foliummap.html') 
 # m._repr_html_()
@@ -50,7 +49,7 @@ def index():
 @app.route('/get_price')
 def get_product_price():
     a = request.args.get('a')
-    url = "https://gf641ea24ecc468-dbmcdeebyface.adb.us-ashburn-1.oraclecloudapps.com/ords/admin/products/price/"+a
+    url = "https://gf641ea24ecc468-dbmcdeebyface.adb.us-ashburn-1.oraclecloudapps.com/ords/admin/flaskordslab/products/value/:product_id"+a
     # print(url)
     response = requests.get(url)
 
@@ -68,7 +67,7 @@ def get_product_price():
 @app.route('/get_description')
 def get_product_description():
     a = request.args.get('a')
-    url = "https://gf641ea24ecc468-dbmcdeebyface.adb.us-ashburn-1.oraclecloudapps.com/ords/admin/products/description/"+a
+    url = "https://gf641ea24ecc468-dbmcdeebyface.adb.us-ashburn-1.oraclecloudapps.com/ords/admin/flaskordslab/products/info/:product_id"+a
     # print(url)
     response = requests.get(url)
 
@@ -85,36 +84,34 @@ def get_product_description():
 
 @app.route('/order') 
 def orderMake():
-    def getPasses():    
-        response = requests.get("https://ENDPOINT_URL/ords/admin/products/")
-        list_of_passes = []
+    def getProducts():    
+        response = requests.get("https://gf641ea24ecc468-dbmcdeebyface.adb.us-ashburn-1.oraclecloudapps.com/ords/admin/products/")
+        list_of_products = []
 
-        for passes in response.json()['items']:
+        for products in response.json()['items']:
             
-            passesList = dict()
-            try:
+            productList = dict()
+            try: 
+                product_id = products['product_id']
+                product_name = products['product_name'] 
 
-                product_id = passes['product_id']
-                product_name = passes['product_name']
-
-                passesList['product_id'] = product_id
-                passesList['product_name'] = product_name
+                productList['product_id'] = product_id
+                productList['product_name'] = product_name
                 
-                list_of_passes.append(passesList)
+                list_of_products.append(productList)
                 
-
             except:
                 pass
 
-        return list_of_passes
+        return list_of_products
 
-    list_of_passes = getPasses()
-    return render_template('orderform.html', list_of_passes_return=list_of_passes)  
+    list_of_products = getProducts()
+    return render_template('orderform.html', list_of_products_return=list_of_products)   
 
 @app.route('/orderhistory')
 def orderHistory():
     def getOrders():
-        response = requests.get("https://gf641ea24ecc468-dbmcdeebyface.adb.us-ashburn-1.oraclecloudapps.com/ords/admin/products/orders/")
+        response = requests.get("https://gf641ea24ecc468-dbmcdeebyface.adb.us-ashburn-1.oraclecloudapps.com/ords/admin/flaskordslab/purchases/history")
         list_of_orders = []
 
         for orders in response.json()['items']:
@@ -142,11 +139,11 @@ def orderHistory():
         return list_of_orders 
  
     list_of_orders = getOrders()
-    return render_template('orderhistory.html', list_of_orders_return=list_of_orders)
+    return render_template('orderhistory.html', list_of_orders=list_of_orders)
 
 @app.route('/result', methods = ['POST', 'GET'])    
 def result():
-   url = "https://gf641ea24ecc468-dbmcdeebyface.adb.us-ashburn-1.oraclecloudapps.com/ords/admin/products/orders/"
+   url = "https://gf641ea24ecc468-dbmcdeebyface.adb.us-ashburn-1.oraclecloudapps.com/ords/admin/flaskordslab/purchases/history"
    if request.method == 'POST':
         product_id = request.form.get('product_id')
         quantity = request.form.get('quantity')
@@ -156,8 +153,7 @@ def result():
 
         headers = {'Content-type':'application/json', 'Accept':'application/json'}
         response = requests.post(url, json=json_data, headers=headers)
-        print(json_data)
-
+  
         return redirect('orderhistory')
 
 # if __name__ == '__main__':

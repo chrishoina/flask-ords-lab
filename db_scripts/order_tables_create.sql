@@ -38,7 +38,7 @@ ALTER TABLE products ADD ( CONSTRAINT product_pk PRIMARY KEY (product_id));
 create table museums (
 museum_id NUMBER GENERATED ALWAYS AS IDENTITY,
 museum_name varchar2(500),
-museum_address varchar2(500),
+museum_location varchar2(500),
 museum_lat NUMBER(8,6),
 museum_long NUMBER(9,6)
 );

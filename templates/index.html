@@ -1,41 +1,76 @@
 {% extends "base.html" %}
 {% block content %}
 <div class="container-fluid">
-  <h1 class="display-1">Viva Las Vegas</h1>
+    <!-- Section 1 on of the home/landing/index page -->
     <div class="row">
-      <div class="col py-1">
-        <p class="fst-italic">
-          <q>Where the gabagool is as fresh as the concrete.</q>
-        </p>
-      </div>
-    </div>
-<div class="container-fluid">
-  <h2>Discover</h2>
-  <div class="row">
-      <div class="col-md-8">Responsive classes
-
-        Bootstrap’s grid includes six tiers of predefined classes for building complex responsive layouts. Customize the size of your columns on extra small, small, medium, large, or extra large devices however you see fit.
-<!-- TO-DO:
-Needs description of site, products, etc. -->
-      </div>
-      <div class="col-6 col-md-4">
-        <div class="card" style="width: 18rem;">
-          <img src="/static/lasvegascardimage.jpg" class="card-img-top" alt="...">
-          <div class="card-body">
-            <h5 class="card-title">Get your culture on.</h5>
-            <p class="card-text">Looking for the best family-friendly fun Las Vegas has to offer? Look no further! Our Day Passes are fun for solo vactioners, couples, and families too!</p>
-<!-- TO-DO:
-Need to link button action to "purchase/order" page.  -->
-            <a href="/order" class="btn btn-primary">Purchase Day Passes!</a>
-          </div>
+        <div class="col">
+            <div class="p-3">
+                <div class="card text-bg-light mb-3 card border-light text-center">
+                    <!-- <img src="..." class="card-img-top" alt="..."> -->
+                    <!-- <div class="card-header">Header</div> -->
+                    <div class="card-body">
+                        <h1 class="display-4">Welcome</h1>
+                      <p class="card-text"><i>Now that you're here, explore a little!</i></p>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
-  </div>
+    </div>
+    <!-- Section 2 of the home/landing/index page -->
+    <div class="row">
+        <div class="col">
+            <div class="p-3">
+                <div class="card mb-3 card text-bg-light card border-light">
+                    <div class="row g-0">
+                        <div class="col-md-8">
+                            <div class="card-body">
+                                <h5 class="card-title">So many options...</h5>
+                            <p class="card-text">You've made it this far, let us take it from here. With so many things to do, Las Vegas can be a little overwhelming. But did you know, there is tons of stuff to do off the main strip too! Check out the map below for details on the best attractions Las Vegas has to offer.
+                            <p>And when you’re ready we have Day passes for every person, woman, man, camera, tv…</p>
+                                </p>
+                            <a href="/orderform.html" class="btn btn-outline-primary">Purchase Day Passes!</a>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <img src="static/lasvegascardimage.jpg" class="img-fluid rounded-start" class alt="...">
+                        </div> 
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Section 3 of the home/landing/index page -->
+    <div class="row">
+        <div class="col">
+            <div class="p-3">
+                <div class="card text-bg-light mb-3 card border-light">
+                    <div class="card-body">
+                        <h5 class="card-title">Card title</h5>
+                             <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                             {{ lvmap | safe }}
+                      <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
+                    </div>
+                </div>
+                <!-- {{ lvmap | safe }} -->
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <div class="p-3">
+                <div class="card text-bg-light mb-3 card border-light">
+                    <div class="card-body">
+                        <h5 class="card-title">Stay in the know</h5>
+                        <div class="mb-3">
+                            <div class="card-text text-muted" >Get exclusive access to special venues, last minute deals, and VIP discounts.</div>
+                            <label for="exampleFormControlInput1" class="form-label"></label>
+                            <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+                        </div>
+                        <a href="#" class="btn btn-outline-primary">Sign me up</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
-  <div class="container-fluid">
-    <h2>Explore</h2>
-           <div class="col-xl-auto py-1">{{ lvmap | safe }}</div>
-      </div>
-  </div>
-</div>
-  {% endblock %}
+{% endblock %}

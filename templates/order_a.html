@@ -3,8 +3,6 @@
     <div class="container">
         <div class="row">
             <div class="col">
-                <form action="/result" method="POST">
-                    <select class="form-select" name="product_id" id="product_id" method="GET" action="/" onchange="getDescription(); getPrice()">
                         <option value="" selected>How many are going?</option> 
                     {% for i in list_of_products_return %}
                         <option value="{{ i['product_id'] }}">{{ i['product_name'] }}</option>
