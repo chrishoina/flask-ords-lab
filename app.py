@@ -82,7 +82,7 @@ def get_product_description():
 
     return jsonify(product_description)
 
-@app.route('/order') 
+@app.route('/orderform') 
 def orderMake():
     def getProducts():    
         response = requests.get("https://gf641ea24ecc468-dbmcdeebyface.adb.us-ashburn-1.oraclecloudapps.com/ords/admin/products/")
