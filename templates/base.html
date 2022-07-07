@@ -6,11 +6,11 @@
     <title>Viva Las Vegas - an ORDS joint</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
       <script>
-        // function totalPrice() {
-        //     var quantity = parseFloat(document.getElementById('quantity').value);
-        //     var price = parseFloat(document.getElementById('price').innerHTML);
-        //     document.getElementById('total').value = (quantity * price).toFixed(2);
-        // }
+        function totalPrice() {
+            var quantity = parseFloat(document.getElementById('quantity').value);
+            var price = parseFloat(document.getElementById('product_price').innerHTML);
+            document.getElementById('total_price').value = (quantity * price).toFixed(2);
+        }
     
         function getPrice(){
   // Establishes a variable called "product_id". Which states that the varible is equal to: 

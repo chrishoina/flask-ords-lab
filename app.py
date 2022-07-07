@@ -47,9 +47,9 @@ def index():
 
 # All of my GET request routes/definitions 
 @app.route('/get_price')
-def get_product_price():
+def getPrice():
     a = request.args.get('a')
-    url = "https://gf641ea24ecc468-dbmcdeebyface.adb.us-ashburn-1.oraclecloudapps.com/ords/admin/flaskordslab/products/value/:product_id"+a
+    url = "https://gf641ea24ecc468-dbmcdeebyface.adb.us-ashburn-1.oraclecloudapps.com/ords/admin/flaskordslab/products/value/"+a
     # print(url)
     response = requests.get(url)
 
@@ -65,9 +65,9 @@ def get_product_price():
     return jsonify(product_price)
    
 @app.route('/get_description')
-def get_product_description():
+def getDescription():
     a = request.args.get('a')
-    url = "https://gf641ea24ecc468-dbmcdeebyface.adb.us-ashburn-1.oraclecloudapps.com/ords/admin/flaskordslab/products/info/:product_id"+a
+    url = "https://gf641ea24ecc468-dbmcdeebyface.adb.us-ashburn-1.oraclecloudapps.com/ords/admin/flaskordslab/products/info/"+a
     # print(url)
     response = requests.get(url)
 
@@ -119,7 +119,7 @@ def orderHistory():
             ordersList = dict()
             try:
 
-                order_id = orders['product_id']
+                order_id = orders['order_id']
                 product_name = orders['product_name']
                 product_description = orders['product_description']
                 quantity = orders['quantity']
@@ -147,7 +147,7 @@ def result():
    if request.method == 'POST':
         product_id = request.form.get('product_id')
         quantity = request.form.get('quantity')
-        total = request.form.get('total')
+        total = request.form.get('total_price')
       
         json_data = { "PRODUCT_ID": product_id, "QUANTITY": quantity, "TOTAL_PRICE": total}
 
