@@ -26,7 +26,7 @@
     </div>
   </div>
   <div class="row py-4">
-    <div class="col-3">
+    <div class="col-2">
       <div class="card">
         <img src="static/tips_tricks_video.png" class="card-img-top" alt="...">
         <div class="card-body">
@@ -35,20 +35,21 @@
         </div>
       </div>
     </div>
-    <div class="col-8">
+    <!-- <div class="col-8">
       <div class="card text-bg-light mb-3 card border-light">
         <div class="card-body">
+          <div class="mb-3">
             <h5 class="card-title">Stay in the know</h5>
             <div class="mb-3">
-                <div class="card-text text-muted" >Get exclusive access to special venues, last minute deals, and VIP discounts.</div>
-                <label for="exampleFormControlInput1" class="form-label"></label>
-                <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
-            </div>
-            <a href="#" class="btn btn-outline-primary">Sign me up</a>
-        </div>
+                <div class="card-text text-muted" >Get exclusive access to special venues, last minute deals, and VIP discounts.
+                </div>
+              </div>
+                  <form action="/newsletter" method="POST" onsubmit="newsletterSubmit()">
+                    <input type="email" id="email" name="email" placeholder="you@email.com">
+                    <input class="btn btn-primary" type="submit" value="Submit">
+                  </form>
+      </div>
     </div>
-    </div>
-  </div>
+  </div> -->
 </div>
-
 {% endblock %}

@@ -6,6 +6,8 @@ drop table products;
 
 drop table museums;
 
+drop table campaign;
+
 CREATE TABLE orders
 (order_id NUMBER GENERATED ALWAYS AS IDENTITY,
 product_id NUMBER(6) NOT NULL,
@@ -46,5 +48,14 @@ museum_long NUMBER(9,6)
 CREATE UNIQUE INDEX museum_pk on museum (museum_id) ;
 
 ALTER TABLE museums ADD ( CONSTRAINT museum_pk PRIMARY KEY (museum_id));
+
+CREATE TABLE campaigns(
+user_id NUMBER GENERATED ALWAYS AS IDENTITY,
+user_email varchar2(100)
+);
+
+CREATE UNIQUE INDEX campaigns_pk ON campaigns (user_id);
+
+ALTER TABLE campaigns ADD (CONSTRAINT campaigns_pk PRIMARY KEY (user_id));
 
 commit;

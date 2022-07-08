@@ -1,7 +1,4 @@
 # to pip install in venv ONLY, use: "python -m pip install [library name]"
-
-from ast import Try
-from traceback import print_tb
 import folium 
 from folium import plugins, JavascriptLink, Tooltip, Icon
 import flask
@@ -155,6 +152,20 @@ def result():
         response = requests.post(url, json=json_data, headers=headers)
   
         return redirect('orderhistory')
+
+# @app.route('/newsletter', methods = ['POST', 'GET'])    
+# def newsletter(): 
+
+#     url = "https://gf641ea24ecc468-dbmcdeebyface.adb.us-ashburn-1.oraclecloudapps.com/ords/admin/flaskordslab/outreach/list"
+#     if request.method == 'POST':
+#         user_email = request.form.get('email')
+
+#         json_data = { "USER_EMAIL": user_email }
+
+#         headers = {'Content-type':'application/json', 'Accept':'application/json'}
+#         response = requests.post(url, json=json_data, headers=headers)
+
+#         return ''
 
 # if __name__ == '__main__':
 #     app.run(host='0.0.0.0', debug=True)
