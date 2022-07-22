@@ -15,7 +15,7 @@
                         <h5>Choose an option:</h5>
                         <select name="product_id" id="product_id" method="GET" action="/" onchange="getPrice(); getDescription();">
                             <option value="" selected>Choose from the dropdown list</option>
-                            {% for i in list_of_products_return %}
+                            {% for i in list_of_products_from_request %}
                             <option value="{{ i['product_id'] }}">{{ i["product_name"] }}</option>
                             {% endfor %}
                             </select>
