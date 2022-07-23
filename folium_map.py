@@ -1,4 +1,3 @@
-from turtle import width
 import folium
 from folium import plugins, JavascriptLink, Tooltip
 import requests
@@ -8,7 +7,7 @@ m = folium.Map(location=[36.085645468598855, -115.08441257156686], zoom_start=11
 
 tooltip = "Click me!"
 
-response = requests.get("https://gf641ea24ecc468-dbmcdeebyface.adb.us-ashburn-1.oraclecloudapps.com/ords/admin/muesums/").json() 
+response = requests.get("https://[Your endpoint goes here].com/ords/[additional/path info/goes here]/").json() 
 
 for museums in response['items']: 
     msm_id = museums['msm_id']
@@ -22,5 +21,5 @@ for museums in response['items']:
         popup=folium.Popup("<i>{}</i>".format(msm_name), max_width=450),
         tooltip=tooltip
         ).add_to(m)
-        
-# return m._repr_html_()
+
+m.save('folium.html')  
