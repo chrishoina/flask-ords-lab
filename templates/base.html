@@ -21,20 +21,15 @@
           })
         }
 
-        function getDescription() {
+        function getDescription(){
         
           var product_id = parseFloat(document.getElementById('product_id').value);
           
           fetch('/get_description?a='+product_id)
           .then(response => response.json())
             .then(json => {
-              document.getElementById("product_description").innerHTML = JSON.stringify(json)
-            })
-        // }
-
-        // function newsletterSubmit() {
-        //   alert("You're all signed up! Can't wait to stay in touch!");
-        // }
+              document.getElementById("product_description").innerHTML = JSON.stringify(json)})
+        }
     </script>
      </head>
      {% include 'navbar.html' %}
@@ -47,5 +42,4 @@
     </script>
   </body>
  </html>
-
  <!-- The sticky-top utility allows the navbar to scroll with the page. This gives a nice modern/responsive feel. The py-1 refers to top and bottom padding. This puts a little bit of negative space on the top and bottom of the navbar. So when scrolling, you can see the page underneath the navbar. This gives a cool, modern effect. --> 
