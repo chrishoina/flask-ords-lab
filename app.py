@@ -13,7 +13,7 @@ from flask import Flask, json, render_template, request, redirect, jsonify
 
 import requests
 
-# Importing json manually is probably an unecessary step, as it is included in Python. But we'll leave it here for demonstrational purposes. 
+# Importing json manually is probably an unnecessary step, as it is included in Python. But we'll leave it here for demonstrational purposes. 
 import json 
 
 app = Flask(__name__)
