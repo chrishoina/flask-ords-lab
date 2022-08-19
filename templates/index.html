@@ -56,23 +56,38 @@
             </div>
         </div>
     </div>
-    <!-- Work in progress - next update to include a Newsletter that will POST to the database -->
-    <!-- <div class="row">
-        <div class="col">
+
+<!-- OPTIONAL CHALLENGE - using this HTML, along with the /campaigns/newsletter Oracle REST endpoint, can you create a route and function that will allow a user to input their information into fields that will then be sent as a JSON payload to a "Campaigns" table in your Autonomous Database?  
+    <div class="row">
+        <div class="col-6">
             <div class="p-3">
                 <div class="card text-bg-light mb-3 card border-light">
                     <div class="card-body">
                         <h5 class="card-title">Stay in the know</h5>
                         <div class="mb-3">
-                            <div class="card-text text-muted" >Get exclusive access to special venues, last minute deals, and VIP discounts.</div>
-                            <label for="exampleFormControlInput1" class="form-label"></label>
-                            <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+                            <div class="card-text text-muted" >Get exclusive access to special venues, last minute deals, and VIP discounts.  
+                            </div>
                         </div>
-                        <a href="#" class="btn btn-outline-primary">Sign me up</a>
+                            <form>
+                                <div class="input-group">
+                                    <span class="input-group-text">First and last name</span>
+                                    <input type="text" aria-label="First name" class="form-control">
+                                    <input type="text" aria-label="Last name" class="form-control">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="exampleInputEmail1" class="form-label">Email address</label>
+                                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                                    <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+                                </div>
+                                    <button type="submit" class="btn btn-primary">Submit</button>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </div> -->
+        </div> -->
+
+    </div>
 </div>
-{% endblock %}
+
+{% endblock %} 

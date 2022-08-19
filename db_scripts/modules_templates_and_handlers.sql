@@ -46,9 +46,7 @@ values (:PRODUCT_ID, :QUANTITY, :PRODUCT_PRICE)');
       p_mimes_allowed  => NULL,
       p_comments       => NULL,
       p_source         => 
-'SELECT o.ORDER_ID, p.PRODUCT_NAME, p.PRODUCT_DESCRIPTION, o.QUANTITY, TO_CHAR(o.PRODUCT_PRICE,''L99G999D99MI'',
-               ''NLS_NUMERIC_CHARACTERS = ''''.,''''
-               NLS_CURRENCY = $'') PRODUCT_PRICE
+'SELECT o.ORDER_ID, p.PRODUCT_NAME, p.PRODUCT_DESCRIPTION, o.QUANTITY, TO_CHAR(o.PRODUCT_PRICE,''L99G999D99MI'',''NLS_NUMERIC_CHARACTERS = ''''.,''''NLS_CURRENCY = "$'') PRODUCT_PRICE
 from orders o, products p
 where o.product_id = p.product_id
 order by o.order_id');

@@ -167,5 +167,23 @@ def result():
   
         return redirect('orderhistory')
 
+# Optional Lab - should you choose to accept the challenge. An Oracle REST endpoint has already been created. So too has a create table script been included in the DB scripts for a "Campaigns" table. We've already given you some ideas here, can you make everything work (to include the HTML, any JavaScript, Python functions, Flask routes, and Oracle REST?)
+
+# @app.route(????, methods = [POST])
+# def [???]:
+    
+#     url = "https://yfuxkbz2ls7taze-ordshandsonlabs.adb.us-phoenix-1.oraclecloudapps.com/ords/python/flask/campaigns/newsletter"
+#     if request.method == 'POST':
+#         customer_first_name = request.form.get('???')
+#         customer_last_name = request.form.get('???')
+#         customer_email = request.form.get('???')
+#         campaign_type = request.form.get('???')
+
+#         json_data = {"CUSTOMER_FIRST_NAME": [???], "CUSTOMER_LAST_NAME": [???], "CUSTOMER_EMAIL": [???], "CAMPAIGN_TYPE": [???]}
+
+#         headers =  headers = {'Content-type':'application/json', 'Accept':'application/json'}
+
+#         response = requests.post(url, json=json_data, headers=headers)
+
 # if __name__ == '__main__':
 #     app.run(host='0.0.0.0', debug=True)

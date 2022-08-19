@@ -1,3 +1,5 @@
+/* Here you'll see two sets of attrubutes and corresponding values. One set for the Museums table, the other for the Products table. You will want to use the "create_tables_used_by_flask_app" script before using this script. */
+
 INSERT INTO museums (
     museum_name,
     museum_location,
@@ -202,6 +204,7 @@ INSERT INTO museums (
     36.00660625,
     -114.976366
 );
+/* Here you will see the product attributes and values for our "Products" table. Like most of this Workshop, the contents are fairly straightforward. The goal here is to create a simple table, nothing more. Something that we can easily manipulate with Flask and Oracle REST APIs. Less complex is better here.*/ 
 
 INSERT INTO products (
     product_name,
