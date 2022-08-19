@@ -1,4 +1,4 @@
-/* Here you'll see two sets of attrubutes and corresponding values. One set for the Museums table, the other for the Products table. You will want to use the "create_tables_used_by_flask_app" script before using this script. */
+/* Here you'll see two sets of attributes and corresponding values. One set for the Museums table, the other for the Products table. You will want to use the "create_tables_used_by_flask_app" script before using this script. */
 
 INSERT INTO museums (
     museum_name,

@@ -60,7 +60,7 @@ def index():
 @app.route('/get_price')
 def getPrice():
     a = request.args.get('a')
-    url = "https://gf641ea24ecc468-dbmcdeebyface.adb.us-ashburn-1.oraclecloudapps.com/ords/admin/flaskordslab/products/value/"+a
+    url = "[https://gf641ea24ecc468-dbmcdeebyface.adb.us-ashburn-1.oraclecloudapps.com/ords/admin/flaskordslab/products/value/]"+a
     # print(url)
     response = requests.get(url)
 
@@ -167,7 +167,7 @@ def result():
   
         return redirect('orderhistory')
 
-# Optional Lab - should you choose to accept the challenge. An Oracle REST endpoint has already been created. So too has a create table script been included in the DB scripts for a "Campaigns" table. We've already given you some ideas here, can you make everything work (to include the HTML, any JavaScript, Python functions, Flask routes, and Oracle REST?)
+# Optional Lab - should you choose to accept the challenge. An Oracle REST endpoint has already been created. So too has a create table script been included in the DB scripts for a "Campaigns" table. We've already given you some ideas here, can you make everything work (to include the HTML, any JavaScript, Python functions, Flask routes, and Oracle REST).
 
 # @app.route(????, methods = [POST])
 # def [???]:
