@@ -32,3 +32,7 @@ We've created a separate `navbar.html` file, which has also been included in the
 #### `app.py` 
 The Python application. This contains extensive commenting. The Python file and commenting can be used as reference or a foundation for iterating on the existing application. By no means is this a production-ready application. Rather the goal is to educate the user on working with Python, the Flask micro-framework, and Oracle REST APIs. 
 
+### Oracle REST APIs
+This Workshop is structured around a Resource Module which consists of several Resource Templates and Resource Handlers. 
+
+You may be familiar with Postman or the OpenAPI's Swagger editor. If you like, you can use either to test and explore the base ORDS URI: https://yfuxkbz2ls7taze-ordshandsonlabs.adb.us-phoenix-1.oraclecloudapps.com/ords/python/open-api-catalog/flask/
