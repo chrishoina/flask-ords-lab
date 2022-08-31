@@ -57,7 +57,7 @@ def index():
     return render_template('index.html', lvmap=lvmap)
 
 # All of my GET request routes/definitions 
-@app.route('/get_price')
+@app.route('/get_price') 
 def getPrice():
     a = request.args.get('a')
     url = "https://yfuxkbz2ls7taze-ordshandsonlabs.adb.us-phoenix-1.oraclecloudapps.com/ords/python/flask/products/pricing/"+a
@@ -72,7 +72,7 @@ def getPrice():
 
         except:
             pass
-   
+
     return jsonify(product_price)
    
 @app.route('/get_description')
